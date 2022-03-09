@@ -85,7 +85,7 @@ while True:
         vm_name = ""
         continue
 
-    vbox_ip_stdout = handle_subprocess(os_shell + [f"VBoxManage guestproperty enumerate {vm_name} | findstr /i ip"])
+    vbox_ip_stdout = handle_subprocess(os_shell + [f"VBoxManage guestproperty enumerate {vm_name}"]) # left out a windows specific command | findstr /i ip
     if ((main_ip_match := re.match(r".*?/Net/0/.*?value:\s+(?P<IP>\d+\.\d+\.\d+\.\d+)", vbox_ip_stdout, flags=re.IGNORECASE)) 
         and main_ip_match.group("IP")
         ):
